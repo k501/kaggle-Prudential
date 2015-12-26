@@ -6,4 +6,5 @@
 
 ## WANT TO  
 1. keras + tensorflow  
+2. g2 instance  
 
