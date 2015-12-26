@@ -28,7 +28,7 @@
         },
         monitoring_dataset:
             {
-                'valid' : *train,
+                'valid' : !pkl: %(valid_data)s,
             },
         cost: !obj:pylearn2.costs.mlp.Default {},
         #==== i add below. dont know why these raw is needed ==============

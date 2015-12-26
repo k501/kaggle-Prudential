@@ -141,7 +141,8 @@ test_mini    <- test.for.pylearn2[c(1:10),]
 # Make csv files
 write.csv(train_large,       "out_for_pylearn2/train.csv",       row.names=F)
 write.csv(train_mini,        "out_for_pylearn2/train_mini.csv",  row.names=F)
-write.csv(valid,             "out_for_pylearn2/valid.csv",       row.names=F)
+write.csv(valid_large,       "out_for_pylearn2/valid.csv",       row.names=F)
+write.csv(valid,             "out_for_pylearn2/valid_mini.csv",  row.names=F)
 write.csv(test.for.pylearn2, "out_for_pylearn2/test.csv",        row.names=F)
 write.csv(test_mini,         "out_for_pylearn2/test_mini.csv",   row.names=F)
 

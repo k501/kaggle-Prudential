@@ -18,10 +18,10 @@ def train_layer1(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l1.yaml".format(yaml_file_path), 'r').read()
     hyper_params = {'batch_size'          : 100,
-                    'monitoring_batches'  : 5,
+                    'monitoring_batches'  : 100,
                     'nvis'                : 952,
-                    'nhid'                : 128,
-                    'max_epochs'          : 5,
+                    'nhid'                : 400,
+                    'max_epochs'          : 10,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
                     'save_path'           : save_path}
@@ -31,27 +31,25 @@ def train_layer1(yaml_file_path, save_path, train_data):
 def train_layer2(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l2.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'train_stop'          : 47500,
-                    'batch_size'          : 1000,
-                    'monitoring_batches'  : 1,
-                    'nvis'                : 128,
-                    'nhid'                : 64,
-                    'max_epochs'          : 5,
+    hyper_params = {'batch_size'          : 100,
+                    'monitoring_batches'  : 100,
+                    'nvis'                : 400,
+                    'nhid'                : 256,
+                    'max_epochs'          : 10,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
                     'save_path'           : save_path}
     yaml = yaml % (hyper_params)
     train_yaml(yaml)
 
-def train_mlp(yaml_file_path, save_path, train_data, model_name):
+def train_mlp(yaml_file_path, save_path, train_data, valid_data, model_name):
 
     yaml = open("{0}/dae_mlp_2layer.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'train_stop'    : 47500,
-                    'valid_stop'    : 47500,
-                    'batch_size'    : 1000,
-                    'max_epochs'    : 10,
+    hyper_params = {'batch_size'    : 100,
+                    'max_epochs'    : 30,
                     'nvis'          : 952,
                     'train_data'    : train_data,
+                    'valid_data'    : valid_data,
                     'n_class'       : 8,
                     'save_path'     : save_path,
                     'model_name'    : model_name  }
@@ -74,7 +72,7 @@ def test_sda():
     print '=== train_layer2 =========================================================='
     train_layer2(yaml_file_path, save_path, train_data)
     print '=== fine tuning ==========================================================='
-    train_mlp(   yaml_file_path, save_path, train_data, model_name)
+    train_mlp(   yaml_file_path, save_path, train_data, valid_data,  model_name)
 
     try:
         os.remove("{}/dae_l1.pkl".format(save_path))

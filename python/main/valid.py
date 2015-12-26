@@ -16,16 +16,16 @@ def score(dataset, model, input_size):
 
     for features, label in zip(dataset.X,dataset.y):
         step += 1
-        
+
         if classify(features,model, input_size) == label:
             nr_correct += 1
 
         if step % 100 == 0:
             print '%5d/%5d correct' % (nr_correct, step)
 
-    print 'validation process end: {}/{} correct'.format(nr_correct, len(dataset.X))    
+    print 'validation process end: {}/{} correct'.format(nr_correct, len(dataset.X))
     return nr_correct, len(dataset.X)
 
 model = pickle.load(open('model.pkl'))
-test_data = pickle.load(open('../data/valid.pkl'))
-score(test_data, model, 966)
+test_data = pickle.load(open('../data/valid_mini.pkl'))
+score(test_data, model, 952)
