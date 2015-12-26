@@ -36,7 +36,7 @@ def train_layer2(yaml_file_path, save_path, train_data):
                     'monitoring_batches'  : 1,
                     'nvis'                : 128,
                     'nhid'                : 64,
-                    'max_epochs'          : 10,
+                    'max_epochs'          : 5,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
                     'save_path'           : save_path}
