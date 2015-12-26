@@ -1,0 +1,6 @@
+from pylearn2.datasets.csv_dataset import CSVDataset
+import pickle
+
+print 'convert: valid_mini.csv -> valid_mini.pkl'
+pyln_data = CSVDataset("../R/out_for_pylearn2/valid_mini.csv", one_hot=True, delimiter=',')
+pickle.dump( pyln_data, open( "data/valid_mini.pkl" , 'w' ) )
