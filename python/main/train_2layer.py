@@ -17,12 +17,11 @@ def train_yaml(yaml_file):
 def train_layer1(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l1.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'train_stop'          : 47500,
-                    'batch_size'          : 1000,
-                    'monitoring_batches'  : 1,
+    hyper_params = {'batch_size'          : 100,
+                    'monitoring_batches'  : 5,
                     'nvis'                : 952,
                     'nhid'                : 128,
-                    'max_epochs'          : 10,
+                    'max_epochs'          : 5,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
                     'save_path'           : save_path}
@@ -66,7 +65,8 @@ def test_sda():
     # set common parameter
     yaml_file_path = '..';
     save_path = '.';
-    train_data = '../data/train_mini.pkl';
+    train_data = '../data/train.pkl';
+    valid_data = '../data/valid.pkl';
     model_name = 'model.pkl';
 
     print '=== train_layer1 =========================================================='

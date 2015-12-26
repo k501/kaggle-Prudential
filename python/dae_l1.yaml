@@ -24,5 +24,5 @@
     },
 
     save_path: "%(save_path)s/dae_l1.pkl",
-    save_freq: 5
+    save_freq: 1
 }

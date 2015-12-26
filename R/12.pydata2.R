@@ -137,6 +137,7 @@ valid <- valid_large[sample(1:nrow(valid_large),1000),]
 # Sampling test data having only 10 rows to make coding be easy
 test_mini    <- test.for.pylearn2[c(1:10),]
 
+
 # Make csv files
 write.csv(train_large,       "out_for_pylearn2/train.csv",       row.names=F)
 write.csv(train_mini,        "out_for_pylearn2/train_mini.csv",  row.names=F)
