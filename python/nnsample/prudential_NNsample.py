@@ -15,18 +15,21 @@ class NN:
         model = Sequential()
         for i in range(len(layers)):
             if i == 0:
-                print ("Input shape: " + str(inputShape))
-                print ("Adding Layer " + str(i) + ": " + str(layers[i]))
+                print ("01-01.Input shape: " + str(inputShape))
+                print ("01-02.Adding Layer" + str(i) + ": " + str(layers[i]))
                 model.add(Dense(layers[i], input_dim = inputShape, init = init))
+
             else:
-                print ("Adding Layer " + str(i) + ": " + str(layers[i]))
+                print ("02-01.Adding Layer" + str(i) + ": " + str(layers[i]))
                 model.add(Dense(layers[i], init = init))
-            print ("Adding " + activation + " layer")
+
+            print ("03-01.Adding " + activation + " layer")
             model.add(Activation(activation))
             model.add(BatchNormalization())
             if len(dropout) > i:
-                print ("Adding " + str(dropout[i]) + " dropout")
+                print ("03-02.Adding " + str(dropout[i]) + " dropout")
                 model.add(Dropout(dropout[i]))
+
         model.add(Dense(1, init = init)) #End in a single output node for regression style output
         model.compile(loss=loss, optimizer=optimizer)
 
@@ -121,15 +124,15 @@ def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization =
 print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
 
-clf = NN(inputShape = train.shape[1], layers = [128, 64], dropout = [0.5, 0.5], loss='mae', optimizer = 'adadelta', init = 'glorot_normal', nb_epochs = 5)
+clf = NN(inputShape = train.shape[1], layers = [128, 64, 32], dropout = [0.5, 0.5], loss='mae', optimizer = 'adadelta', init = 'glorot_normal', nb_epochs = 5)
 
 print ("Training model...")
 clf.fit(train, labels)
 
-print ("Making predictions...")
-pred = clf.predict(test)
-predClipped = np.clip(np.round(pred), 1, 8).astype(int) #Make the submissions within the accepted range
+#print ("Making predictions...")
+#pred = clf.predict(test)
+#predClipped = np.clip(np.round(pred), 1, 8).astype(int) #Make the submissions within the accepted range
 
-submission = pd.read_csv('../../data/sample_submission.csv')
-submission["Response"] = predClipped
-submission.to_csv('NNSubmission.csv', index=False)
+#submission = pd.read_csv('../../data/sample_submission.csv')
+#submission["Response"] = predClipped
+#submission.to_csv('NNSubmission.csv', index=False)
