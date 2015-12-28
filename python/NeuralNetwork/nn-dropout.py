@@ -126,10 +126,18 @@ def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization =
 print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
 
-clf = NN(inputShape = train.shape[1], layers = [128, 64], dropout = [0.5, 0.5], loss='mae', optimizer = 'adadelta', init = 'glorot_normal', nb_epochs = 5)
+clf = NN(
+        inputShape = train.shape[1],
+        layers = [128, 64],
+        dropout = [0.5, 0.5],
+        loss='mae',
+        optimizer = 'adadelta',
+        init = 'glorot_normal',
+        batch_size = 32,
+        nb_epochs = 5)
 
-print ("Training model...")
-clf.fit(train, labels)
+#print ("Training model...")
+# clf.fit(train, labels)
 
 #print ("Making predictions...")
 #pred = clf.predict(test)

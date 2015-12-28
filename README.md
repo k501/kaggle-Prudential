@@ -7,4 +7,6 @@
 ## WANT TO  
 1. keras + tensorflow  
 2. g2 instance  
+3. batch normalization 
 
+ 
