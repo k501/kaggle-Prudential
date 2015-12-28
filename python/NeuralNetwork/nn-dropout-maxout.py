@@ -15,19 +15,21 @@ class NN:
         model = Sequential()
         for i in range(len(layers)):
             if i == 0:
-                print ("01-01.Input shape: " + str(inputShape))
-                print ("01-02.Adding Layer" + str(i) + ": " + str(layers[i]))
-                model.add(Dense(layers[i], input_dim = inputShape, init = init))
-
-            else:
-                print ("02-01.Adding Layer" + str(i) + ": " + str(layers[i]))
+                print ("=== Input Layer: " + str(inputShape))
+                print ("=== Adding Layer" + str(i + 1) + ": " + str(layers[i]))
+                model.add(Dropout(0.5, input_shape=(inputShape,)))
                 model.add(Dense(layers[i], init = init))
 
-            print ("03-01.Adding " + activation + " layer")
+                #model.add(Dense(layers[i], input_dim = inputShape, init = init))
+            else:
+                print ("=== Adding Layer" + str(i + 1) + ": " + str(layers[i]))
+                model.add(Dense(layers[i], init = init))
+
+            print ("=== Adding " + activation + " layer")
             model.add(Activation(activation))
             model.add(BatchNormalization())
             if len(dropout) > i:
-                print ("03-02.Adding " + str(dropout[i]) + " dropout")
+                print ("=== Adding " + str(dropout[i]) + " dropout to Layer " + str(i+1))
                 model.add(Dropout(dropout[i]))
 
         model.add(Dense(1, init = init)) #End in a single output node for regression style output
@@ -124,7 +126,7 @@ def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization =
 print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
 
-clf = NN(inputShape = train.shape[1], layers = [128, 64, 32], dropout = [0.5, 0.5], loss='mae', optimizer = 'adadelta', init = 'glorot_normal', nb_epochs = 5)
+clf = NN(inputShape = train.shape[1], layers = [128, 64], dropout = [0.5, 0.5], loss='mae', optimizer = 'adadelta', init = 'glorot_normal', nb_epochs = 5)
 
 print ("Training model...")
 clf.fit(train, labels)
