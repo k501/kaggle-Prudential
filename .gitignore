@@ -46,6 +46,4 @@ prudential/R/out/out_20151129_1.csv
 prudential/R/submit/20151217_1.csv
 .Rproj.user
 
-python/NeuralNetwork/data/test.csv
-
-python/NeuralNetwork/data/train.csv
+python/NeuralNetwork/data/*.*
