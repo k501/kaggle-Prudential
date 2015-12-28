@@ -17,10 +17,10 @@ class NN:
             if i == 0:
                 print ("=== Input Layer: " + str(inputShape))
                 print ("=== Adding Layer" + str(i + 1) + ": " + str(layers[i]))
-                model.add(Dropout(0.5, input_shape=(inputShape,)))
-                model.add(Dense(layers[i], init = init))
+                #model.add(Dropout(0.5, input_shape=(inputShape,)))
+                #model.add(Dense(layers[i], init = init))
 
-                #model.add(Dense(layers[i], input_dim = inputShape, init = init))
+                model.add(Dense(layers[i], input_dim = inputShape, init = init))
             else:
                 print ("=== Adding Layer" + str(i + 1) + ": " + str(layers[i]))
                 model.add(Dense(layers[i], init = init))
