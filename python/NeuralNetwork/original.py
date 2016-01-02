@@ -37,7 +37,7 @@ class NN:
 
     def fit(self, X, y):
         self.model.fit(X.values, y.values, nb_epoch=self.nb_epochs, batch_size=self.batch_size, verbose = self.verbose)
-
+ 
     def predict(self, X, batch_size = 128, verbose = 1):
         return self.model.predict(X.values, batch_size = batch_size, verbose = verbose)
 

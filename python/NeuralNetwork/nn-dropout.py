@@ -1,8 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
 
 from keras.models import Sequential
-from keras.layers.core import Dense, Dropout, Activation
+from keras.layers.core import Dense, Dropout, Activation, MaxoutDense
 from keras.optimizers import Adadelta
 from keras.layers.normalization import BatchNormalization
 
@@ -11,19 +13,34 @@ class NN:
     #I think they have something like this built in already, oh well
     #See http://keras.io/ for parameter options
     def __init__(self, inputShape, layers, dropout = [], activation = 'relu', init = 'uniform', loss = 'rmse', optimizer = 'adadelta', nb_epochs = 50, batch_size = 32, verbose = 1):
-
         model = Sequential()
         for i in range(len(layers)):
             if i == 0:
-                print ("=== Input Layer: " + str(inputShape))
-                print ("=== Adding Layer" + str(i + 1) + ": " + str(layers[i]))
+                # Also Dropout input variables ------------------------
                 #model.add(Dropout(0.5, input_shape=(inputShape,)))
                 #model.add(Dense(layers[i], init = init))
-
+                # Normal -----------------------------------------------
                 model.add(Dense(layers[i], input_dim = inputShape, init = init))
+                # Maxout -----------------------------------------------
+                """
+                model.add(MaxoutDense(
+                    output_dim = layers[i] / 4,
+                    nb_feature=4,
+                    init='glorot_uniform',
+                    #weights=None,
+                    #W_regularizer=None,
+                    #b_regularizer=None,
+                    #activity_regularizer=None,
+                    #W_constraint=None,
+                    #b_constraint=None,
+                    input_dim = inputShape))
+                """
+                print ("=== inputShape: " + str(inputShape))
+                print ("=== Adding Layer" + str(i + 1) + "  nodes : " + str(layers[i]))
             else:
                 print ("=== Adding Layer" + str(i + 1) + ": " + str(layers[i]))
                 model.add(Dense(layers[i], init = init))
+                #model.add(MaxoutDense(layers[i],  init = init))
 
             print ("=== Adding " + activation + " layer")
             model.add(Activation(activation))
@@ -96,8 +113,8 @@ def pdFillNAN(df, strategy = "mean"):
 
 def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True):
     data_dir = "../../data/"
-    train = pd.read_csv(data_dir + 'train.csv')
-    test = pd.read_csv(data_dir + 'test.csv')
+    train = pd.read_csv(data_dir + 'train_mini.csv')
+    test = pd.read_csv(data_dir + 'test_mini.csv')
 
     labels = train["Response"]
     train.drop(labels = "Id", axis = 1, inplace = True)
@@ -123,21 +140,22 @@ def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization =
 
     return train, test, labels
 
+# GET STARTED
 print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
-
+# DEFINE MODEL CONFIGRATION
 clf = NN(
         inputShape = train.shape[1],
         layers = [128, 64],
         dropout = [0.5, 0.5],
-        loss='mae',
+        loss='categorical_crossentropy',
         optimizer = 'adadelta',
         init = 'glorot_normal',
         batch_size = 32,
         nb_epochs = 5)
 
 #print ("Training model...")
-# clf.fit(train, labels)
+clf.fit(train, labels)
 
 #print ("Making predictions...")
 #pred = clf.predict(test)
