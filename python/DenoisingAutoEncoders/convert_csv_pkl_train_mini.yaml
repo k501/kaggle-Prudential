@@ -1,8 +1,0 @@
-from pylearn2.datasets.csv_dataset import CSVDataset
-import pickle
-
-print 'convert: train_mini.csv -> train_mini.pkl'
-pyln_data = CSVDataset("../R/out_for_pylearn2/train_mini.csv", one_hot=True, delimiter=',')
-pickle.dump( pyln_data, open( "data/train_mini.pkl" , 'w' ) )
-
-

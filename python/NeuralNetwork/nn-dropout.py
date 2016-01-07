@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
-
+import csv
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, MaxoutDense
 from keras.optimizers import Adadelta
@@ -113,8 +113,8 @@ def pdFillNAN(df, strategy = "mean"):
 
 def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True):
     data_dir = "../../data/"
-    train = pd.read_csv(data_dir + 'train_mini.csv')
-    test = pd.read_csv(data_dir + 'test_mini.csv')
+    train = pd.read_csv(data_dir + 'train.csv')
+    test = pd.read_csv(data_dir + 'test.csv')
 
     labels = train["Response"]
     train.drop(labels = "Id", axis = 1, inplace = True)
@@ -143,7 +143,16 @@ def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization =
 # GET STARTED
 print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
+
+print ("output train.csv")
+train.to_csv('../Maxout-Dropout/data/train_normalized.csv', index=False)
+print ("output test.csv")
+test.to_csv('../Maxout-Dropout/data/test_normalized.csv', index=False)
+
+
+
 # DEFINE MODEL CONFIGRATION
+'''
 clf = NN(
         inputShape = train.shape[1],
         layers = [128, 64],
@@ -153,14 +162,15 @@ clf = NN(
         init = 'glorot_normal',
         batch_size = 32,
         nb_epochs = 5)
-
+'''
 #print ("Training model...")
-clf.fit(train, labels)
+#clf.fit(train, labels)
+'''
+print ("Making predictions...")
+pred = clf.predict(test)
+predClipped = np.clip(np.round(pred), 1, 8).astype(int) #Make the submissions within the accepted range
 
-#print ("Making predictions...")
-#pred = clf.predict(test)
-#predClipped = np.clip(np.round(pred), 1, 8).astype(int) #Make the submissions within the accepted range
-
-#submission = pd.read_csv('../../data/sample_submission.csv')
-#submission["Response"] = predClipped
-#submission.to_csv('NNSubmission.csv', index=False)
+submission = pd.read_csv('../../data/sample_submission.csv')
+submission["Response"] = predClipped
+submission.to_csv('NNSubmission.csv', index=False)
+'''

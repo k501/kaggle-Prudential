@@ -1,6 +1,0 @@
-from pylearn2.datasets.csv_dataset import CSVDataset
-import pickle
-
-print 'convert: valid_large.csv -> valid.pkl'
-pyln_data = CSVDataset("../R/out_for_pylearn2/valid_large.csv", one_hot=True, delimiter=',')
-pickle.dump( pyln_data, open( "data/valid.pkl" , 'w' ) )

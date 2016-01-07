@@ -14,3 +14,7 @@ prudential/R/submit/20151217_1.csv
 python/NeuralNetwork/data/*.*
 R/.RData
 R/.Rhistory
+
+*.csv
+
+*.pkl
