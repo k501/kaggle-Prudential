@@ -86,6 +86,6 @@ print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
 
 print ("output train.csv")
-train.to_csv('../data/train_normalized.csv', index=False)
+train.to_csv('train_normalized.csv', index=False)
 print ("output test.csv")
-test.to_csv('../data/test_normalized.csv', index=False)
+test.to_csv('test_normalized.csv', index=False)

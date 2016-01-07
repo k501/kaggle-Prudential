@@ -63,8 +63,8 @@ def test_sda():
     # set common parameter
     yaml_file_path = '..';
     save_path = '.';
-    train_data = '../data/train.pkl';
-    valid_data = '../data/valid.pkl';
+    train_data = '../../data/train.pkl';
+    valid_data = '../../data/valid.pkl';
     model_name = 'model.pkl';
 
     print '=== train_layer1 =========================================================='
