@@ -3,6 +3,7 @@ prudential/R/.RData
 prudential/R/.Rhistory
 prudential/python/data/train_mini.pkl
 prudential/python/main/model.pkl
+prudential/python/data/*.*
 *.pper
 prudential/R/.Rproj.user/*
 prudential/R/from_pylearn2/test.csv
