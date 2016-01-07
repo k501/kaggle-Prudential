@@ -147,9 +147,9 @@ print ("Creating dataset...")
 train, test, labels = make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True)
 
 model = Sequential()
-model.add(MaxoutDense(input_dim = train.shape[1],output_dim = 100,nb_feature = 10,init='glorot_uniform'))
+model.add(MaxoutDense(output_dim = 100, input_dim = train.shape[1], nb_feature=4, init='glorot_uniform'))
 model.add(Dropout(0.2))
-model.add(Dense(input_dim=100, output_dim=8))
+model.add(Dense(output_dim = 8))
 model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adadelta')
 
