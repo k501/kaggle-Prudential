@@ -27,5 +27,5 @@ def score(dataset, model, input_size):
     return nr_correct, len(dataset.X)
 
 model = pickle.load(open('model.pkl'))
-test_data = pickle.load(open('../data/valid_mini.pkl'))
-score(test_data, model, 952)
+test_data = pickle.load(open('../../data/valid_1000.pkl'))
+score(test_data, model, 1077)

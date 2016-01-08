@@ -17,10 +17,10 @@ def train_yaml(yaml_file):
 def train_layer1(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l1.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'          : 100,
-                    'monitoring_batches'  : 100,
-                    'nvis'                : 952,
-                    'nhid'                : 400,
+    hyper_params = {'batch_size'          : 32,
+                    'monitoring_batches'  : 5,
+                    'nvis'                : 1077,
+                    'nhid'                : 100,
                     'max_epochs'          : 10,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
@@ -31,10 +31,10 @@ def train_layer1(yaml_file_path, save_path, train_data):
 def train_layer2(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l2.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'          : 100,
-                    'monitoring_batches'  : 100,
-                    'nvis'                : 400,
-                    'nhid'                : 256,
+    hyper_params = {'batch_size'          : 32,
+                    'monitoring_batches'  : 5,
+                    'nvis'                : 100,
+                    'nhid'                : 100,
                     'max_epochs'          : 10,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
@@ -45,9 +45,9 @@ def train_layer2(yaml_file_path, save_path, train_data):
 def train_mlp(yaml_file_path, save_path, train_data, valid_data, model_name):
 
     yaml = open("{0}/dae_mlp_2layer.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'    : 100,
-                    'max_epochs'    : 30,
-                    'nvis'          : 952,
+    hyper_params = {'batch_size'    : 32,
+                    'max_epochs'    : 10,
+                    'nvis'          : 1077,
                     'train_data'    : train_data,
                     'valid_data'    : valid_data,
                     'n_class'       : 8,
@@ -63,7 +63,7 @@ def test_sda():
     # set common parameter
     yaml_file_path = '..';
     save_path = '.';
-    train_data = '../../data/train.pkl';
+    train_data = '../../data/train_mini.pkl';
     valid_data = '../../data/valid.pkl';
     model_name = 'model.pkl';
 
