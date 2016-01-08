@@ -1,7 +1,6 @@
 data/arc/*
 
 python/data/*.csv
-python/data/*.pkl
 python/Maxout-Dropout/.Rproj.user/*
 
 R/submit/*.csv
@@ -12,3 +11,4 @@ R/.Rproj.user/*
 *.Rproj
 *.pper
 .Rproj.user
+*.pkl
