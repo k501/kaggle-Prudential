@@ -17,11 +17,11 @@ def train_yaml(yaml_file):
 def train_layer1(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l1.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'          : 32,
-                    'monitoring_batches'  : 5,
+    hyper_params = {'batch_size'          : 1000,
+                    'monitoring_batches'  : 1,
                     'nvis'                : 1077,
-                    'nhid'                : 100,
-                    'max_epochs'          : 10,
+                    'nhid'                : 200,
+                    'max_epochs'          : 100,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
                     'save_path'           : save_path}
@@ -31,11 +31,11 @@ def train_layer1(yaml_file_path, save_path, train_data):
 def train_layer2(yaml_file_path, save_path, train_data):
 
     yaml = open("{0}/dae_l2.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'          : 32,
-                    'monitoring_batches'  : 5,
-                    'nvis'                : 100,
+    hyper_params = {'batch_size'          : 1000,
+                    'monitoring_batches'  : 1,
+                    'nvis'                : 200,
                     'nhid'                : 100,
-                    'max_epochs'          : 10,
+                    'max_epochs'          : 100,
                     'train_data'          : train_data,
                     'act_enc'             : 'tanh',
                     'save_path'           : save_path}
@@ -45,8 +45,8 @@ def train_layer2(yaml_file_path, save_path, train_data):
 def train_mlp(yaml_file_path, save_path, train_data, valid_data, model_name):
 
     yaml = open("{0}/dae_mlp_2layer.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'    : 32,
-                    'max_epochs'    : 10,
+    hyper_params = {'batch_size'    : 1000,
+                    'max_epochs'    : 500,
                     'nvis'          : 1077,
                     'train_data'    : train_data,
                     'valid_data'    : valid_data,

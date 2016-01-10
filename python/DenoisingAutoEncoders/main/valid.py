@@ -26,6 +26,6 @@ def score(dataset, model, input_size):
     print 'validation process end: {}/{} correct'.format(nr_correct, len(dataset.X))
     return nr_correct, len(dataset.X)
 
-model = pickle.load(open('model.pkl'))
+model = pickle.load(open('best.pkl'))
 test_data = pickle.load(open('../../data/valid_1000.pkl'))
 score(test_data, model, 1077)
