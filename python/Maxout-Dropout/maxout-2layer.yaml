@@ -4,14 +4,14 @@
         layers: [
                  !obj:pylearn2.models.maxout.Maxout {
                      layer_name: 'h0',
-                     num_units: 800,
+                     num_units: 600,
                      num_pieces: 5,
                      irange: .005,
                      max_col_norm: 1.9365,
                  },
                  !obj:pylearn2.models.maxout.Maxout {
                      layer_name: 'h1',
-                     num_units: 800,
+                     num_units: 300,
                      num_pieces: 5,
                      irange: .005,
                      max_col_norm: 1.9365,

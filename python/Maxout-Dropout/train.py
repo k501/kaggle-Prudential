@@ -14,9 +14,24 @@ def train_yaml(yaml_file):
     train = yaml_parse.load(yaml_file)
     train.main_loop()
 
-def train_maxout(yaml_file_path, save_path, train_data, valid_data, model_name):
+def train_maxout_2layer(yaml_file_path, save_path, train_data, valid_data, model_name):
 
+    print 'MAXOUT-DROPOUT 2 LAYERS'
     yaml = open("{0}/maxout-2layer.yaml".format(yaml_file_path), 'r').read()
+    hyper_params = {'batch_size'          : 1000,
+                    'monitoring_batches'  : 1,
+                    'nvis'                : 1077,
+                    'train_data'          : train_data,
+                    'valid_data'          : valid_data,
+                    'save_path'           : save_path,
+                    'model_name'          : model_name }
+    yaml = yaml % (hyper_params)
+    train_yaml(yaml)
+
+def train_maxout_3layer(yaml_file_path, save_path, train_data, valid_data, model_name):
+
+    print 'MAXOUT-DROPOUT 3 LAYERS'
+    yaml = open("{0}/maxout-3layer.yaml".format(yaml_file_path), 'r').read()
     hyper_params = {'batch_size'          : 1000,
                     'monitoring_batches'  : 1,
                     'nvis'                : 1077,
@@ -38,7 +53,8 @@ def test_sda():
     valid_data = '../data/valid.pkl';
     model_name = 'model.pkl';
 
-    train_maxout(yaml_file_path, save_path, train_data, valid_data, model_name)
+    #train_maxout_2layer(yaml_file_path, save_path, train_data, valid_data, model_name)
+    train_maxout_3layer(yaml_file_path, save_path, train_data, valid_data, model_name)
 
     '''
     try:
