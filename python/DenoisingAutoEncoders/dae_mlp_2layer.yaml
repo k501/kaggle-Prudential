@@ -56,6 +56,10 @@
     save_path: "%(save_path)s/%(model_name)s",
     save_freq: 1,
     extensions: [
+        !obj:pylearn2.train_extensions.best_params.MonitorBasedSaveBest {
+             channel_name: 'valid_y_misclass',
+             save_path: "best.pkl"
+        },
         !obj:pylearn2.training_algorithms.learning_rule.MomentumAdjustor {
             start: 1,
             saturate: 250,
