@@ -5,7 +5,7 @@ import theano
 
 # function for classifying a input vector
 def classify(inp,model,input_size):
-    inp = np.asarray(inp)
+    inp = np.asarray(inp, dtype=np.float32)
     inp.shape = (1, input_size)
     return np.argmax(model.fprop(theano.shared(inp, name='inputs')).eval())
 
