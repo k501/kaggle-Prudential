@@ -1,5 +1,7 @@
-install.packages("caret")
+#install.packages("caret")
 library(caret)
+# save workspace
+# save.image("/mnt/ebs1/kaggle/prudential/python/data/workspaceR.RData")
 
 train_original <- read.csv('../../data/train.csv')
 train_normalized <- read.csv('train_normalized.csv')

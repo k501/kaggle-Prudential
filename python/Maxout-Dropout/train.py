@@ -17,8 +17,8 @@ def train_yaml(yaml_file):
 def train_maxout(yaml_file_path, save_path, train_data, valid_data, model_name):
 
     yaml = open("{0}/maxout-2layer.yaml".format(yaml_file_path), 'r').read()
-    hyper_params = {'batch_size'          : 32,
-                    'monitoring_batches'  : 100,
+    hyper_params = {'batch_size'          : 1000,
+                    'monitoring_batches'  : 1,
                     'nvis'                : 1077,
                     'train_data'          : train_data,
                     'valid_data'          : valid_data,
@@ -34,7 +34,7 @@ def test_sda():
     # set common parameter
     yaml_file_path = '.';
     save_path = '.';
-    train_data = '../data/train_mini.pkl';
+    train_data = '../data/train.pkl';
     valid_data = '../data/valid.pkl';
     model_name = 'model.pkl';
 

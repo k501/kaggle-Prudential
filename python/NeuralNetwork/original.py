@@ -37,7 +37,7 @@ class NN:
 
     def fit(self, X, y):
         self.model.fit(X.values, y.values, nb_epoch=self.nb_epochs, batch_size=self.batch_size, verbose = self.verbose)
- 
+
     def predict(self, X, batch_size = 128, verbose = 1):
         return self.model.predict(X.values, batch_size = batch_size, verbose = verbose)
 
@@ -90,7 +90,7 @@ def pdFillNAN(df, strategy = "mean"):
         return df.fillna(strategy)
 
 def make_dataset(useDummies = True, fillNANStrategy = "mean", useNormalization = True):
-    data_dir = "../input/"
+    data_dir = "../../data/"
     train = pd.read_csv(data_dir + 'train.csv')
     test = pd.read_csv(data_dir + 'test.csv')
 
@@ -130,6 +130,6 @@ print ("Making predictions...")
 pred = clf.predict(test)
 predClipped = np.clip(np.round(pred), 1, 8).astype(int) #Make the submissions within the accepted range
 
-submission = pd.read_csv('../input/sample_submission.csv')
+submission = pd.read_csv('../../data/sample_submission.csv')
 submission["Response"] = predClipped
 submission.to_csv('NNSubmission.csv', index=False)
